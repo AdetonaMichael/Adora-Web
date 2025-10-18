@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ChevronRight, ShoppingBag, Star } from "lucide-react";
@@ -72,14 +73,14 @@ export function HeroSection() {
             className="hidden md:block"
           >
             <div className="relative bg-white/10 dark:bg-white/5 backdrop-blur-md rounded-2xl p-8 border border-white/20 shadow-2xl">
-              <img
+              <Image
                 src="https://images.unsplash.com/photo-1472851294608-062f824d29cc?w=800&q=80"
                 alt="Marketplace Shopping"
                 className="rounded-xl w-full object-cover"
-                loading="lazy"
-                onError={(e) => {
-                  e.currentTarget.src = "https://placehold.co/800x600/6366f1/ffffff?text=Marketplace";
-                }}
+                width={800}
+                height={600}
+                unoptimized
+                priority={false}
               />
               <motion.div
                 animate={{ y: [0, -10, 0] }}

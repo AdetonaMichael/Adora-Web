@@ -62,7 +62,7 @@ export default function AboutPage() {
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-5xl font-bold mb-6">About MarketHub</h1>
             <p className="text-xl text-blue-100 dark:text-blue-200">
-              We're building the world's most trusted multi-vendor marketplace, 
+              We&apos;re building the world&apos;s most trusted multi-vendor marketplace, 
               connecting passionate sellers with eager buyers across the globe.
             </p>
           </div>
@@ -102,7 +102,7 @@ export default function AboutPage() {
                 too much commission. We wanted to change that.
               </p>
               <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
-                Today, we're proud to serve over 10,000 vendors and 1 million customers worldwide, 
+                Today, we&apos;re proud to serve over 10,000 vendors and 1 million customers worldwide, 
                 facilitating millions in transactions while keeping our fees fair and our platform simple.
               </p>
             </div>
@@ -150,7 +150,7 @@ export default function AboutPage() {
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold mb-4">Meet Our Team</h2>
             <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-              We're a diverse team of dreamers, builders, and problem-solvers passionate about 
+              We&apos;re a diverse team of dreamers, builders, and problem-solvers passionate about 
               creating the best marketplace experience.
             </p>
           </div>
@@ -177,7 +177,7 @@ export default function AboutPage() {
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-4xl font-bold mb-6">Join Our Growing Community</h2>
           <p className="text-xl text-blue-100 dark:text-blue-200 mb-8 max-w-2xl mx-auto">
-            Whether you're a buyer looking for unique products or a seller ready to grow your business, 
+            Whether you&apos;re a buyer looking for unique products or a seller ready to grow your business, 
             MarketHub is here for you.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

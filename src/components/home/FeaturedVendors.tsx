@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Star, Store } from "lucide-react";
 
@@ -57,10 +58,13 @@ export function FeaturedVendors() {
             >
               <div className="flex flex-col items-center text-center">
                 <div className="relative mb-4">
-                  <img
+                  <Image
                     src={vendor.logo}
                     alt={vendor.name}
                     className="w-20 h-20 rounded-full object-cover border-4 border-gray-100 dark:border-gray-700"
+                    width={80}
+                    height={80}
+                    unoptimized
                   />
                   {vendor.verified && (
                     <div className="absolute -bottom-1 -right-1 bg-blue-600 text-white p-1 rounded-full">
