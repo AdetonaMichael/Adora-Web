@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { Bell, Settings, ChevronDown, LogOut } from "lucide-react";
 import { useState } from "react";
+import Image from "next/image";
 
 export function VendorHeader() {
   const [showDropdown, setShowDropdown] = useState(false);
@@ -29,21 +30,23 @@ export function VendorHeader() {
             </button>
             
             <div className="relative">
-              <button
+                <button
                 onClick={() => setShowDropdown(!showDropdown)}
                 className="flex items-center gap-3 p-2 hover:bg-gray-100 rounded-lg"
-              >
-                <img
+                >
+                <Image
                   src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop"
                   alt="Vendor"
-                  className="w-8 h-8 rounded-full"
+                  width={32}
+                  height={32}
+                  className="rounded-full"
                 />
                 <div className="hidden md:block text-left">
                   <div className="text-sm font-medium">TechGear Plus</div>
                   <div className="text-xs text-gray-500">Vendor</div>
                 </div>
                 <ChevronDown size={16} />
-              </button>
+                </button>
 
               {showDropdown && (
                 <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-2">

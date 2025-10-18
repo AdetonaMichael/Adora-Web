@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useEffect, useState, ReactNode } from "react";
+import { createContext, useContext, useEffect, useState, ReactNode, useCallback } from "react";
 
 type Theme = "light" | "dark" | "system";
 
@@ -17,12 +17,12 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   const [mounted, setMounted] = useState(false);
 
   // Get actual theme (resolve system preference)
-  const getActualTheme = (): "light" | "dark" => {
+  const getActualTheme = useCallback((): "light" | "dark" => {
     if (theme === "system") {
       return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
     }
     return theme;
-  };
+  }, [theme]);
 
   const [actualTheme, setActualTheme] = useState<"light" | "dark">("light");
 
@@ -51,7 +51,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
 
     // Save to localStorage
     localStorage.setItem("theme", theme);
-  }, [theme, mounted]);
+  }, [theme, mounted, getActualTheme]);
 
   // Listen to system theme changes when in system mode
   useEffect(() => {

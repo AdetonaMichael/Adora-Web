@@ -95,7 +95,7 @@ export function Header() {
             <li><Link href="/categories/beauty" className="hover:text-blue-600">Beauty</Link></li>
             <li><Link href="/categories/sports" className="hover:text-blue-600">Sports</Link></li>
             <li><Link href="/vendors" className="hover:text-blue-600 font-medium">All Vendors</Link></li>
-            <li><Link href="/deals" className="text-red-600 font-medium">Today's Deals</Link></li>
+            <li><Link href="/deals" className="text-red-600 font-medium">Today&apos;s Deals</Link></li>
           </ul>
         </div>
       </nav>

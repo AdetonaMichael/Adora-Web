@@ -99,7 +99,7 @@ export function PromoBanner() {
             </h2>
 
             <p className="text-xl md:text-2xl mb-8 text-blue-100 dark:text-gray-300 max-w-2xl">
-              Limited time offer on thousands of products. Don't miss out on these incredible deals!
+              Limited time offer on thousands of products. Don&apos;t miss out on these incredible deals!
             </p>
 
             {/* Countdown Timer */}

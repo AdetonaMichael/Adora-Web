@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Star, Heart } from "lucide-react";
+import Image from "next/image";
 
 interface ProductCardProps {
   product: {
@@ -23,11 +24,15 @@ export function ProductCard({ product }: ProductCardProps) {
     <Link href={`/products/${product.id}`} className="group">
       <div className="bg-white rounded-lg shadow-sm hover:shadow-xl transition-all overflow-hidden">
         <div className="relative aspect-square overflow-hidden bg-gray-100">
-          <img 
+          <Image
             src={product.image} 
             alt={product.name}
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            className="object-cover group-hover:scale-105 transition-transform duration-300"
+            priority={false}
           />
+        
           {discount > 0 && (
             <div className="absolute top-2 left-2 bg-red-500 text-white px-2 py-1 rounded-md text-xs font-semibold">
               -{discount}%
