@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Star, Store } from "lucide-react";
 
+
 const vendors = [
   {
     id: 1,
@@ -40,7 +41,6 @@ const vendors = [
     verified: true,
   },
 ];
-
 export function FeaturedVendors() {
   return (
     <section className="py-16 bg-white dark:bg-gray-950">
