@@ -119,7 +119,7 @@ export default function VerifyEmailPage() {
               Verification Failed
             </h2>
             <p className="text-gray-600 dark:text-gray-400 mb-8">
-              We couldn't verify your email. The link may have expired or is invalid.
+              We couldn&apos;t verify your email. The link may have expired or is invalid.
             </p>
 
             <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-xl p-4 mb-6">
@@ -163,12 +163,12 @@ export default function VerifyEmailPage() {
               Check Your Email
             </h2>
             <p className="text-gray-600 dark:text-gray-400 mb-6">
-              We've sent a new verification link to your email address.
+              We&apos;ve sent a new verification link to your email address.
             </p>
 
             <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-xl p-4 mb-6">
               <p className="text-sm text-gray-700 dark:text-gray-300 mb-2">
-                Didn't receive the email?
+                Didn&apos;t receive the email?
               </p>
               <p className="text-xs text-gray-600 dark:text-gray-400">
                 Check your spam folder or wait {countdown} seconds to resend

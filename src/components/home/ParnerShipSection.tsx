@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Handshake } from "lucide-react";
+import Image from "next/image";
 
 interface Partner {
   name: string;
@@ -80,7 +81,7 @@ export function PartnershipSection() {
               className="bg-white dark:bg-gray-800 rounded-xl p-6 flex items-center justify-center border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-all group"
             >
               <div className="relative w-full h-16 flex items-center justify-center">
-            <img
+            <Image
               src={partner.logo}
               alt={partner.name}
               className="max-w-full max-h-full object-contain grayscale group-hover:grayscale-0 transition-all duration-300 opacity-60 group-hover:opacity-100"

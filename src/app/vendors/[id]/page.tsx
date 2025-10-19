@@ -7,7 +7,6 @@ import { motion } from "framer-motion";
 import {
   Star,
   MapPin,
-  Store,
   Package,
   Users,
   Shield,
@@ -370,7 +369,7 @@ export default function VendorDetailsPage() {
                   <div>
                     <h3 className="text-lg font-semibold mb-3 dark:text-white">Our Story</h3>
                     <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
-                      {vendor.description} Since joining in {vendor.joinedDate}, we've built a reputation for quality products, 
+                      {vendor.description} Since joining in {vendor.joinedDate}, we&apos;ve built a reputation for quality products, 
                       excellent customer service, and fast shipping. Our commitment to customer satisfaction has made us one of 
                       the top-rated vendors on the platform.
                     </p>

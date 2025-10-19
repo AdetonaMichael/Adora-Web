@@ -12,7 +12,6 @@ import {
   Heart,
   Grid3x3,
   List,
-  TrendingUp
 } from "lucide-react";
 
 interface Product {

@@ -29,6 +29,7 @@ export default function LoginPage() {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
+    console.log('the form data: ', formData);
     if (errors[name]) {
       setErrors(prev => ({ ...prev, [name]: "" }));
     }
@@ -56,6 +57,7 @@ export default function LoginPage() {
     if (!validateForm()) return;
 
     setIsLoading(true);
+    console.log('the form :', formData);
     setTimeout(() => {
       setIsLoading(false);
       console.log("Login:", formData);
