@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { ProductCard } from "../shared/ProductCard";
 import { TrendingUp, Zap, ArrowRight } from "lucide-react";
+import Link from "next/link";
 
 interface ProductCarouselProps {
   title: string;
@@ -116,11 +117,12 @@ export function ProductCarousel({ title, subtitle }: ProductCarouselProps) {
           className="text-center"
         >
           <div className="inline-flex flex-col sm:flex-row gap-4 items-center">
-            <motion.button
+            <Link href="/products">
+              <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="relative group bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-700 text-white px-10 py-4 rounded-xl font-semibold shadow-lg hover:shadow-2xl transition-all duration-300 flex items-center gap-2 overflow-hidden"
-            >
+              className="relative group  border-1 border-gray-200 text-white px-10 py-4 rounded-xl font-semibold shadow-lg hover:shadow-2xl transition-all duration-300 flex items-center gap-2 overflow-hidden"
+              >
               {/* Shine Effect */}
               <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12"></div>
               
@@ -132,7 +134,8 @@ export function ProductCarousel({ title, subtitle }: ProductCarouselProps) {
               >
                 <ArrowRight size={20} />
               </motion.div>
-            </motion.button>
+              </motion.button>
+            </Link>
 
             <motion.button
               whileHover={{ scale: 1.05 }}

@@ -4,10 +4,13 @@ import { FeaturedVendors } from "@/components/home/FeaturedVendors";
 import { ProductCarousel } from "@/components/home/ProductCarousel";
 import { TrustBadges } from "@/components/home/TrustBadges";
 import { PromoBanner } from "@/components/home/PromoBanner";
+import { PartnershipSection } from "@/components/home/ParnerShipSection";
+import { EcommerceNav } from "@/components/shared/EcommerceNav";
 
 export default function HomePage() {
   return (
     <>
+      <EcommerceNav/>
       <HeroSection />
       <CategoryGrid />
       <ProductCarousel 
@@ -20,6 +23,7 @@ export default function HomePage() {
         title="New Arrivals" 
         subtitle="Fresh products from our vendors"
       />
+      <PartnershipSection />
       <TrustBadges />
     </>
   );

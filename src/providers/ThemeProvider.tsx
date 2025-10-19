@@ -42,11 +42,13 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     const newActualTheme = getActualTheme();
     setActualTheme(newActualTheme);
 
-    // Apply theme
+    // Apply theme: set both data-theme (compat) and the `dark` class for Tailwind
     if (newActualTheme === "dark") {
       root.setAttribute("data-theme", "dark");
+      root.classList.add("dark");
     } else {
       root.removeAttribute("data-theme");
+      root.classList.remove("dark");
     }
 
     // Save to localStorage
@@ -63,8 +65,10 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
       setActualTheme(newActualTheme);
       if (newActualTheme === "dark") {
         document.documentElement.setAttribute("data-theme", "dark");
+        document.documentElement.classList.add("dark");
       } else {
         document.documentElement.removeAttribute("data-theme");
+        document.documentElement.classList.remove("dark");
       }
     };
 
@@ -72,11 +76,8 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     return () => mediaQuery.removeEventListener("change", handleChange);
   }, [theme, mounted]);
 
-  // Prevent flash of unstyled content
-  if (!mounted) {
-    return <>{children}</>;
-  }
-
+  // Always render the provider so consumers (client components) never run
+  // outside of the ThemeContext. We still guard DOM mutations with `mounted`.
   return (
     <ThemeContext.Provider value={{ theme, setTheme, actualTheme }}>
       {children}
