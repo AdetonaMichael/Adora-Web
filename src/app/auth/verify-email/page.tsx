@@ -10,6 +10,8 @@ import {
   RefreshCw,
   Loader
 } from "lucide-react";
+import Image from "next/image";
+import { adoralogo } from "@/images";
 
 type VerificationStatus = "verifying" | "success" | "error" | "resend";
 
@@ -82,17 +84,24 @@ export default function VerifyEmailPage() {
             className="text-center"
           >
             <div className="w-20 h-20 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mx-auto mb-6">
-              <CheckCircle size={40} className="text-green-600 dark:text-green-400" />
+               <div className="items-center flex justify-center">
+                  <Image
+                    src={adoralogo}
+                    alt='Adora Logo'
+                    height={120}
+                    className="mb-4"
+                      />
+                </div>
             </div>
-            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
-              Email Verified!
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4 flex items-center justify-center">
+              Email Verified!  <CheckCircle size={40} className="text-green-600 ml-4 dark:text-green-400" />
             </h2>
             <p className="text-gray-600 dark:text-gray-400 mb-8">
               Your email has been successfully verified. You can now access all features of your account.
             </p>
             <Link
               href="/auth/login"
-              className="inline-block w-full bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-700 text-white py-4 rounded-xl font-bold hover:shadow-xl hover:scale-[1.02] transition-all"
+              className="inline-block w-full bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-700 text-white py-4 rounded-xl font-bold hover:shadow-xl hover:scale-[1.02] transition-all"
             >
               Continue to Sign In
             </Link>
@@ -135,7 +144,7 @@ export default function VerifyEmailPage() {
 
             <button
               onClick={handleResend}
-              className="w-full bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-700 text-white py-4 rounded-xl font-bold hover:shadow-xl hover:scale-[1.02] transition-all flex items-center justify-center gap-2"
+              className="w-full bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-700 text-white py-4 rounded-xl font-bold hover:shadow-xl hover:scale-[1.02] transition-all flex items-center justify-center gap-2"
             >
               <RefreshCw size={20} />
               Resend Verification Email
@@ -178,7 +187,7 @@ export default function VerifyEmailPage() {
             <button
               onClick={handleResend}
               disabled={!canResend}
-              className="w-full bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-700 text-white py-4 rounded-xl font-bold hover:shadow-xl hover:scale-[1.02] transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 flex items-center justify-center gap-2"
+              className="w-full bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-700 text-white py-4 rounded-xl font-bold hover:shadow-xl hover:scale-[1.02] transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 flex items-center justify-center gap-2"
             >
               <RefreshCw size={20} />
               {canResend ? "Resend Email" : `Resend in ${countdown}s`}
@@ -210,7 +219,7 @@ export default function VerifyEmailPage() {
         {/* MarketHub Logo */}
         <div className="text-center mt-8">
           <Link href="/" className="text-2xl font-extrabold text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition">
-            MarketHub
+           Adora MarketHub
           </Link>
           <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
             Your trusted marketplace

@@ -11,6 +11,8 @@ import {
   CheckCircle,
   ShieldCheck
 } from "lucide-react";
+import Image from "next/image";
+import { adoralogo } from "@/images";
 
 export default function ResetPasswordPage() {
   const [formData, setFormData] = useState({
@@ -89,7 +91,14 @@ export default function ResetPasswordPage() {
         >
           <div className="bg-white dark:bg-gray-800 rounded-3xl shadow-2xl border border-gray-200 dark:border-gray-700 p-8 md:p-12 text-center">
             <div className="w-20 h-20 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mx-auto mb-6">
-              <CheckCircle size={40} className="text-green-600 dark:text-green-400" />
+            <div className="items-center flex justify-center">
+                  <Image
+                     src={adoralogo}
+                     alt='Adora Logo'
+                     height={120}
+                     className="mb-4"
+                      />
+                   </div>
             </div>
 
             <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
@@ -101,7 +110,7 @@ export default function ResetPasswordPage() {
 
             <Link
               href="/auth/login"
-              className="inline-block w-full bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-700 text-white py-4 rounded-xl font-bold hover:shadow-xl hover:scale-[1.02] transition-all"
+              className="inline-block w-full bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-700 text-white py-4 rounded-xl font-bold hover:shadow-xl hover:scale-[1.02] transition-all"
             >
               Sign In to Your Account
             </Link>
@@ -124,9 +133,14 @@ export default function ResetPasswordPage() {
       >
         <div className="bg-white dark:bg-gray-800 rounded-3xl shadow-2xl border border-gray-200 dark:border-gray-700 p-8 md:p-12">
           <div className="text-center mb-8">
-            <div className="w-16 h-16 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
-              <ShieldCheck size={32} className="text-blue-600 dark:text-blue-400" />
-            </div>
+               <div className="items-center flex justify-center">
+                 <Image
+                    src={adoralogo}
+                    alt='Adora Logo'
+                    height={120}
+                    className="mb-4"
+                   />
+                </div>
             <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
               Reset Password
             </h2>
@@ -253,7 +267,7 @@ export default function ResetPasswordPage() {
             <button
               onClick={handleSubmit}
               disabled={isLoading}
-              className="w-full bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-700 text-white py-4 rounded-xl font-bold text-lg hover:shadow-xl hover:scale-[1.02] transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+              className="w-full bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-700 text-white py-4 rounded-xl font-bold text-lg hover:shadow-xl hover:scale-[1.02] transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
             >
               {isLoading ? (
                 <span className="flex items-center justify-center gap-2">

@@ -8,7 +8,7 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
           {/* Company Info */}
           <div className="lg:col-span-2">
-            <h3 className="text-white text-xl font-bold mb-4">MarketHub</h3>
+            <h3 className="text-white text-xl font-bold mb-4">Adora MarketHub</h3>
             <p className="text-sm mb-4">
               Your trusted multi-vendor marketplace connecting buyers with quality vendors worldwide.
             </p>
@@ -86,7 +86,7 @@ export function Footer() {
 
         {/* Bottom Bar */}
         <div className="mt-12 pt-8 border-t border-gray-800 dark:border-gray-900 flex flex-col md:flex-row justify-between items-center gap-4 text-sm">
-          <p>&copy; 2025 MarketHub. All rights reserved.</p>
+          <p>&copy; 2025 Adora MarketHub. All rights reserved.</p>
           <div className="flex gap-6">
             <Link href="/privacy" className="hover:text-white">Privacy Policy</Link>
             <Link href="/terms" className="hover:text-white">Terms of Service</Link>

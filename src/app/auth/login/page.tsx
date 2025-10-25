@@ -15,6 +15,7 @@ import {
   Facebook,
   ShoppingBag
 } from "lucide-react";
+import { adoralogo } from "@/images";
 
 export default function LoginPage() {
   const [formData, setFormData] = useState({
@@ -73,73 +74,24 @@ export default function LoginPage() {
       <div className="absolute top-0 left-0 w-96 h-96 bg-blue-500/10 dark:bg-blue-500/5 rounded-full blur-3xl"></div>
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-indigo-500/10 dark:bg-indigo-500/5 rounded-full blur-3xl"></div>
 
-      <div className="w-full max-w-6xl relative">
-        <div className="grid lg:grid-cols-2 gap-8 items-center">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
-            className="hidden lg:block"
-          >
-            <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-3xl blur-xl opacity-20"></div>
-              <div className="relative bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-700 dark:from-gray-900 dark:via-gray-800 dark:to-black rounded-3xl p-12 text-white">
-                <Link href="/" className="inline-block mb-8">
-                  <h1 className="text-4xl font-extrabold">MarketHub</h1>
-                </Link>
-                <h2 className="text-3xl font-bold mb-6">Welcome Back!</h2>
-                <p className="text-blue-100 dark:text-gray-300 text-lg mb-8">
-                  Sign in to continue shopping and access your account.
-                </p>
-                
-                <div className="space-y-6 mb-12">
-                  <div className="flex items-start gap-4">
-                    <div className="bg-blue-500/20 p-3 rounded-xl">
-                      <ShoppingBag size={24} />
-                    </div>
-                    <div>
-                      <h3 className="font-bold text-lg mb-1">Track Your Orders</h3>
-                      <p className="text-blue-100 text-sm">Monitor your purchases in real-time</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-4">
-                    <div className="bg-blue-500/20 p-3 rounded-xl">
-                      <ShoppingBag size={24} />
-                    </div>
-                    <div>
-                      <h3 className="font-bold text-lg mb-1">Saved Items</h3>
-                      <p className="text-blue-100 text-sm">Access your wishlist and favorites</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-4">
-                    <div className="bg-blue-500/20 p-3 rounded-xl">
-                      <ShoppingBag size={24} />
-                    </div>
-                    <div>
-                      <h3 className="font-bold text-lg mb-1">Exclusive Deals</h3>
-                      <p className="text-blue-100 text-sm">Get access to member-only offers</p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="relative h-48">
-                  <Image
-                    src="https://images.unsplash.com/photo-1472851294608-062f824d29cc?w=600&h=400&fit=crop"
-                    alt="Shopping"
-                    fill
-                    className="object-cover rounded-2xl opacity-30"
-                  />
-                </div>
-              </div>
-            </div>
-          </motion.div>
+      <div className="w-full max-w-xl relative">
+        <div className="grid lg:grid-cols-1  items-center">
+          
 
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
+            
             <div className="bg-white dark:bg-gray-800 rounded-3xl shadow-2xl border border-gray-200 dark:border-gray-700 p-8 md:p-12">
+              <div className="items-center flex justify-center">
+                  <Image
+                  src={adoralogo}
+                  alt='Adora Logo'
+                  height={120}
+                  />
+                </div>
               <div className="mb-8">
                 <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
                   Sign In
@@ -153,24 +105,20 @@ export default function LoginPage() {
               </div>
 
               <div className="space-y-3 mb-8">
-                <button
+                
+                 
+                <div className="grid grid-cols-2 gap-3">
+                  
+                  <button
                   onClick={() => handleOAuthLogin("google")}
-                  className="w-full flex items-center justify-center gap-3 px-6 py-3 border-2 border-gray-300 dark:border-gray-600 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700 transition font-medium"
+                  className="w-full cursor-pointer flex items-center justify-center gap-3 px-6 py-3 border-2 border-gray-300 dark:border-gray-600 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700 transition font-medium"
                 >
                   <Chrome size={20} className="text-red-500" />
-                  Continue with Google
+                   Google
                 </button>
-                <div className="grid grid-cols-2 gap-3">
-                  <button
-                    onClick={() => handleOAuthLogin("github")}
-                    className="flex items-center justify-center gap-2 px-4 py-3 border-2 border-gray-300 dark:border-gray-600 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700 transition font-medium"
-                  >
-                    <Github size={20} />
-                    GitHub
-                  </button>
                   <button
                     onClick={() => handleOAuthLogin("facebook")}
-                    className="flex items-center justify-center gap-2 px-4 py-3 border-2 border-gray-300 dark:border-gray-600 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700 transition font-medium"
+                    className="flex cursor-pointer items-center justify-center gap-2 px-4 py-3 border-2 border-gray-300 dark:border-gray-600 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700 transition font-medium"
                   >
                     <Facebook size={20} className="text-blue-600" />
                     Facebook
@@ -274,7 +222,7 @@ export default function LoginPage() {
                 <button
                   onClick={handleSubmit}
                   disabled={isLoading}
-                  className="w-full bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-700 text-white py-4 rounded-xl font-bold text-lg hover:shadow-xl hover:scale-[1.02] transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+                  className="w-full bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-700 text-white py-4 rounded-xl font-bold text-lg hover:shadow-xl hover:scale-[1.02] transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
                 >
                   {isLoading ? (
                     <span className="flex items-center justify-center gap-2">

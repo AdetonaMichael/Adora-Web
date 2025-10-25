@@ -20,11 +20,11 @@ const partners: Partner[] = [
     },
     {
         name: "Remonode-BOS",
-        logo: "remonode-bos.png",
+        logo: "/remonode-bos.png",
     },
     {
         name: "LuxuryX",
-        logo: "luxury.jpeg",
+        logo: "/luxury.jpeg",
     },
 ];
 
@@ -84,8 +84,9 @@ export function PartnershipSection() {
             <Image
               src={partner.logo}
               alt={partner.name}
-              className="max-w-full max-h-full object-contain grayscale group-hover:grayscale-0 transition-all duration-300 opacity-60 group-hover:opacity-100"
-            />
+              width={100}
+              height={100}
+              className="max-w-full max-h-full object-contain grayscale group-hover:grayscale-0 transition-all duration-300 opacity-60 group-hover:opacity-100"/>
               </div>
             </motion.div>
           ))}

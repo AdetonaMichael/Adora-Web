@@ -20,6 +20,10 @@ import {
   Plus,
   Info
 } from "lucide-react";
+import { formatMonetaryValue } from "@/helper/global";
+import { PaymentProviderSelector } from "@/components/Payment/PaymentMethod";
+import { Footer } from "@/components/layout/Footer";
+import { Header } from "@/components/layout/Header";
 
 interface CartItem {
   id: number;
@@ -48,7 +52,118 @@ export default function CheckoutPage() {
   const [deliveryMethod, setDeliveryMethod] = useState<DeliveryMethod>("delivery");
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>("card");
   const [isProcessing, setIsProcessing] = useState(false);
+  const [paymentError, setPaymentError] = useState<string | null>(null);
+
   
+
+  const providers = [
+    {
+      id: 'paystack',
+      name: 'paystack',
+      displayName: 'Paystack',
+      description: 'Pay with cards, bank transfer or USSD',
+      fees: { percentage: 0 },
+      processingTime: 'Instant',
+      popular: true
+    },
+    {
+      id: 'flutterwave',
+      name: 'flutterwave',
+      displayName: 'Flutterwave',
+      description: 'Cards, bank transfer & mobile money',
+      fees: { percentage: 0 },
+      processingTime: 'Instant',
+      popular: true
+    },
+    {
+      id: 'stripe',
+      name: 'stripe',
+      displayName: 'Stripe',
+      description: 'Global card payments',
+      fees: { percentage: 0, fixed: 0 },
+      processingTime: 'Instant'
+    },
+    {
+      id: 'paypal',
+      name: 'paypal',
+      displayName: 'PayPal',
+      description: 'Pay with your PayPal account',
+      fees: { percentage: 0, fixed: 0 },
+      processingTime: 'Instant'
+    },
+    {
+      id: 'bank_transfer',
+      name: 'bank_transfer',
+      displayName: 'Bank Transfer',
+      description: 'Direct bank transfer',
+      fees: { fixed: 0 },
+      processingTime: '1-2 hours'
+    }
+  ];
+
+   const handleProceedToPayment = async (): Promise<void> => {
+    // if (!selectedPackage) {
+    //   setPaymentError('Please select a package');
+    //   return;
+    // }
+
+    // if (!selectedProvider) {
+    //   setPaymentError('Please select a payment method');
+    //   return;
+    // }
+
+    setIsProcessing(true);
+    setPaymentError(null);
+
+    try {
+
+      const response = await fetch('/initiatePayStackPayment', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'X-Requested-With': 'XMLHttpRequest'
+        },
+        credentials: 'same-origin', // Include cookies for session
+        // body: JSON.stringify({
+        //   amount: selectedPackage.price,
+        //   provider: selectedProvider.id,
+        //   package_id: selectedPackage.id,
+        //   credits: selectedPackage.credits
+        // })
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+
+      if (data.success && data.authorization_url) {
+        // Store transaction info in sessionStorage for callback handling
+        // sessionStorage.setItem('pending_transaction', JSON.stringify({
+        //   reference: data.reference,
+        //   package: selectedPackage,
+        //   provider: selectedProvider
+        // }));
+
+        // Redirect to payment gateway immediately
+        window.location.href = data.authorization_url;
+      } else {
+        setPaymentError(data.message || 'Payment initialization failed');
+        setIsProcessing(false);
+      }
+    } catch (error: any) {
+      console.error('Payment error:', error);
+      if (error.message.includes('419') || error.message.includes('CSRF')) {
+        setPaymentError('Security token expired. Please refresh the page and try again.');
+      } else {
+        setPaymentError('An error occurred during payment processing. Please try again.');
+      }
+      setIsProcessing(false);
+    }
+  };
+
   const [shippingAddress, setShippingAddress] = useState<ShippingAddress>({
     fullName: "John Doe",
     phone: "+1 (555) 123-4567",
@@ -113,6 +228,8 @@ export default function CheckoutPage() {
   };
 
   return (
+    <>
+    <Header/>
     <div className="min-h-screen bg-gray-50 dark:bg-gray-950 py-8">
       <div className="container mx-auto px-4">
         {/* Breadcrumb */}
@@ -188,7 +305,7 @@ export default function CheckoutPage() {
                   <Truck size={32} className={deliveryMethod === "delivery" ? "text-blue-600 dark:text-blue-400" : "text-gray-400"} />
                   <h3 className="font-bold mt-3 dark:text-white">Home Delivery</h3>
                   <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">Delivered to your address</p>
-                  <p className="text-sm font-semibold text-blue-600 dark:text-blue-400 mt-2">$15.00</p>
+                  <p className="text-sm font-semibold text-blue-600 dark:text-blue-400 mt-2">{formatMonetaryValue(15.00)}</p>
                 </button>
 
                 <button
@@ -288,114 +405,67 @@ export default function CheckoutPage() {
             )}
 
             {/* Payment Method */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-200 dark:border-gray-700 p-6"
-            >
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-10 h-10 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center">
-                  <CreditCard className="text-blue-600 dark:text-blue-400" size={20} />
+            {/* Payment Section */}
+          {/* {selectedPackage && ( */}
+            <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 p-4 sm:p-6 mb-8">
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+                Payment Summary
+              </h3>
+
+              <div className="space-y-3 mb-6 text-sm">
+                <div className="flex justify-between text-gray-700 dark:text-gray-300">
+                  <span>Package:</span>
+                  {/* <span className="font-medium">{selectedPackage.name}</span> */}
                 </div>
-                <h2 className="text-xl font-bold dark:text-white">Payment Method</h2>
-              </div>
-
-              <div className="space-y-3">
-                {paymentOptions.map((option) => (
-                  <button
-                    key={option.id}
-                    onClick={() => setPaymentMethod(option.id)}
-                    className={`w-full flex items-center gap-4 p-4 rounded-xl border-2 transition ${
-                      paymentMethod === option.id
-                        ? "border-blue-600 bg-blue-50 dark:bg-blue-900/20"
-                        : "border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600"
-                    }`}
-                  >
-                    <div className={`w-12 h-12 rounded-full flex items-center justify-center ${
-                      paymentMethod === option.id
-                        ? "bg-blue-600"
-                        : "bg-gray-100 dark:bg-gray-700"
-                    }`}>
-                      <option.icon size={24} className={paymentMethod === option.id ? "text-white" : "text-gray-600 dark:text-gray-400"} />
-                    </div>
-                    <div className="flex-1 text-left">
-                      <h3 className="font-bold dark:text-white">{option.name}</h3>
-                      <p className="text-sm text-gray-600 dark:text-gray-400">{option.description}</p>
-                    </div>
-                    {paymentMethod === option.id && (
-                      <div className="w-6 h-6 bg-blue-600 rounded-full flex items-center justify-center">
-                        <Check size={16} className="text-white" />
-                      </div>
-                    )}
-                  </button>
-                ))}
-              </div>
-
-              {/* Card Details Form */}
-              {paymentMethod === "card" && (
-                <motion.div
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: "auto" }}
-                  className="mt-6 pt-6 border-t border-gray-200 dark:border-gray-700"
-                >
-                  <div className="space-y-4">
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                        Card Number
-                      </label>
-                      <input
-                        type="text"
-                        placeholder="1234 5678 9012 3456"
-                        value={cardDetails.number}
-                        onChange={(e) => setCardDetails({ ...cardDetails, number: e.target.value })}
-                        className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
-                        maxLength={19}
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                        Cardholder Name
-                      </label>
-                      <input
-                        type="text"
-                        placeholder="John Doe"
-                        value={cardDetails.name}
-                        onChange={(e) => setCardDetails({ ...cardDetails, name: e.target.value })}
-                        className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
-                      />
-                    </div>
-                    <div className="grid grid-cols-2 gap-4">
-                      <div>
-                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                          Expiry Date
-                        </label>
-                        <input
-                          type="text"
-                          placeholder="MM/YY"
-                          value={cardDetails.expiry}
-                          onChange={(e) => setCardDetails({ ...cardDetails, expiry: e.target.value })}
-                          className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
-                          maxLength={5}
-                        />
-                      </div>
-                      <div>
-                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                          CVV
-                        </label>
-                        <input
-                          type="text"
-                          placeholder="123"
-                          value={cardDetails.cvv}
-                          onChange={(e) => setCardDetails({ ...cardDetails, cvv: e.target.value })}
-                          className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
-                          maxLength={4}
-                        />
-                      </div>
-                    </div>
+                <div className="flex justify-between text-gray-700 dark:text-gray-300">
+                  <span>Credits:</span>
+                  {/* <span className="font-medium">{selectedPackage.credits.toLocaleString()}</span> */}
+                </div>
+                <div className="border-t border-gray-200 dark:border-gray-700 pt-3">
+                  <div className="flex justify-between font-semibold text-lg text-gray-900 dark:text-white">
+                    <span>Total:</span>
+                    {/* <span>₦{selectedPackage.price}</span> */}
                   </div>
-                </motion.div>
+                </div>
+              </div>
+
+              <PaymentProviderSelector
+                providers={providers.map(provider => ({
+                  ...provider,
+                  disabled: !['paystack', 'bank_transfer'].includes(provider.id)
+                }))}
+                isAdmin={false}
+                showDisabledProviders={true}
+                disabled={isProcessing}
+              />
+
+              {/* Payment error display */}
+              {paymentError && (
+                <div className="mb-4 p-3 bg-red-100 dark:bg-red-900/30 border border-red-200 dark:border-red-800 rounded-lg">
+                  <p className="text-red-700 dark:text-red-300 text-sm">{paymentError}</p>
+                </div>
               )}
-            </motion.div>
+
+              <button
+                onClick={handleProceedToPayment}
+                disabled={isProcessing }
+                className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 px-6 rounded-xl font-semibold disabled:opacity-50 disabled:cursor-not-allowed transition-all flex items-center justify-center space-x-2"
+              >
+                {isProcessing ? (
+                  <>
+                    <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                    <span>Processing...</span>
+                  </>
+                ) : (
+                  <>
+                    <CreditCard className="h-5 w-5" />
+                    <span>Pay {formatMonetaryValue(200)}</span>
+                  </>
+                )}
+              </button>
+            </div>
+          {/* )} */}
+
           </div>
 
           {/* Order Summary Sidebar */}
@@ -424,7 +494,7 @@ export default function CheckoutPage() {
                         <h3 className="font-medium text-sm dark:text-white line-clamp-1">{item.name}</h3>
                         <p className="text-xs text-gray-500 dark:text-gray-400">{item.vendor}</p>
                         <p className="text-sm font-semibold dark:text-white mt-1">
-                          ${item.price.toFixed(2)} × {item.quantity}
+                          {formatMonetaryValue(item.price)} × {item.quantity}
                         </p>
                       </div>
                     </div>
@@ -435,21 +505,21 @@ export default function CheckoutPage() {
                 <div className="border-t border-gray-200 dark:border-gray-700 pt-4 space-y-3">
                   <div className="flex justify-between text-sm">
                     <span className="text-gray-600 dark:text-gray-400">Subtotal</span>
-                    <span className="font-medium dark:text-white">${subtotal.toFixed(2)}</span>
+                    <span className="font-medium dark:text-white">{formatMonetaryValue(subtotal)}</span>
                   </div>
                   <div className="flex justify-between text-sm">
                     <span className="text-gray-600 dark:text-gray-400">Shipping</span>
                     <span className="font-medium dark:text-white">
-                      {shippingCost === 0 ? "FREE" : `$${shippingCost.toFixed(2)}`}
+                      {shippingCost === 0 ? "FREE" : `${formatMonetaryValue(shippingCost)}`}
                     </span>
                   </div>
                   <div className="flex justify-between text-sm">
                     <span className="text-gray-600 dark:text-gray-400">Tax (8%)</span>
-                    <span className="font-medium dark:text-white">${tax.toFixed(2)}</span>
+                    <span className="font-medium dark:text-white">{formatMonetaryValue(tax)}</span>
                   </div>
                   <div className="border-t border-gray-200 dark:border-gray-700 pt-3 flex justify-between">
                     <span className="font-bold text-lg dark:text-white">Total</span>
-                    <span className="font-bold text-lg text-blue-600 dark:text-blue-400">${total.toFixed(2)}</span>
+                    <span className="font-bold text-lg text-blue-600 dark:text-blue-400">{formatMonetaryValue(total)}</span>
                   </div>
                 </div>
 
@@ -457,7 +527,7 @@ export default function CheckoutPage() {
                 <button
                   onClick={handlePlaceOrder}
                   disabled={isProcessing}
-                  className="w-full mt-6 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-700 text-white py-4 rounded-xl font-bold text-lg hover:shadow-xl hover:scale-[1.02] transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 flex items-center justify-center gap-2"
+                  className="w-full mt-6 bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-700 text-white py-4 rounded-xl font-bold text-lg hover:shadow-xl hover:scale-[1.02] transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 flex items-center justify-center gap-2"
                 >
                   {isProcessing ? (
                     <>
@@ -493,5 +563,7 @@ export default function CheckoutPage() {
         </div>
       </div>
     </div>
+    <Footer/>
+    </>
   );
 }

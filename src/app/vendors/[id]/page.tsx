@@ -20,6 +20,7 @@ import {
   TrendingUp,
   ThumbsUp
 } from "lucide-react";
+import { formatMonetaryValue } from "@/helper/global";
 
 const vendor = {
   id: 1,
@@ -153,14 +154,14 @@ export default function VendorDetailsPage() {
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
       {/* Banner Section */}
-      <div className="relative h-64 md:h-80 bg-gradient-to-r from-blue-600 to-purple-700 overflow-hidden">
+      <div className="relative h-64 md:h-80  overflow-hidden">
         <Image
           src={vendor.banner}
           alt={vendor.name}
           fill
-          className="object-cover opacity-40"
+          className="object-cover "
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+        <div className="absolute inset-0 "></div>
       </div>
 
       {/* Vendor Info Card */}
@@ -533,11 +534,11 @@ function ProductCard({ product }: { product: typeof products[0] }) {
           </div>
           <div className="flex items-center gap-2">
             <span className="text-lg font-bold text-gray-900 dark:text-white">
-              ${product.price}
+              {formatMonetaryValue(product.price)}
             </span>
             {product.originalPrice && (
               <span className="text-sm text-gray-400 line-through">
-                ${product.originalPrice}
+                {formatMonetaryValue(product.originalPrice)}
               </span>
             )}
           </div>

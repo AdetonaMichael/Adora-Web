@@ -59,6 +59,46 @@ const sampleProducts = [
     rating: 4.4,
     reviews: 167,
   },
+  {
+    id: 6,
+    name: "Yoga Mat Pro",
+    price: 39.99,
+    originalPrice: 59.99,
+    image: "https://images.unsplash.com/photo-1601925260368-ae2f83cf8b7f?w=400&h=400&fit=crop",
+    vendor: "FitLife Store",
+    rating: 4.4,
+    reviews: 167,
+  },
+  {
+    id: 7,
+    name: "Yoga Mat Pro",
+    price: 39.99,
+    originalPrice: 59.99,
+    image: "https://images.unsplash.com/photo-1601925260368-ae2f83cf8b7f?w=400&h=400&fit=crop",
+    vendor: "FitLife Store",
+    rating: 4.4,
+    reviews: 167,
+  },
+  {
+    id: 6,
+    name: "Yoga Mat Pro",
+    price: 39.99,
+    originalPrice: 59.99,
+    image: "https://images.unsplash.com/photo-1601925260368-ae2f83cf8b7f?w=400&h=400&fit=crop",
+    vendor: "FitLife Store",
+    rating: 4.4,
+    reviews: 167,
+  },
+  {
+    id: 7,
+    name: "Yoga Mat Pro",
+    price: 39.99,
+    originalPrice: 59.99,
+    image: "https://images.unsplash.com/photo-1601925260368-ae2f83cf8b7f?w=400&h=400&fit=crop",
+    vendor: "FitLife Store",
+    rating: 4.4,
+    reviews: 167,
+  },
 ];
 
 export function ProductCarousel({ title, subtitle }: ProductCarouselProps) {
@@ -156,10 +196,10 @@ export function ProductCarousel({ title, subtitle }: ProductCarouselProps) {
           className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6"
         >
           {[
-            { value: "2K+", label: "Products Listed", gradient: "from-blue-600 to-cyan-600" },
-            { value: "98%", label: "Satisfaction Rate", gradient: "from-purple-600 to-pink-600" },
-            { value: "24/7", label: "Customer Support", gradient: "from-green-600 to-emerald-600" },
-            { value: "Fast", label: "Free Shipping", gradient: "from-orange-600 to-yellow-600" },
+            { value: "2K+", label: "Products Listed", gradient: "from-yellow-300 via-yellow-200 to-yellow-300" },
+            { value: "98%", label: "Satisfaction Rate", gradient: "from-yellow-300 via-yellow-200 to-yellow-300" },
+            { value: "24/7", label: "Customer Support", gradient: "from-yellow-300 via-yellow-200 to-yellow-300" },
+            { value: "Fast", label: "Free Shipping", gradient: "from-yellow-300 via-yellow-200 to-yellow-300" },
           ].map((stat, idx) => (
             <motion.div
               key={idx}
@@ -169,7 +209,7 @@ export function ProductCarousel({ title, subtitle }: ProductCarouselProps) {
               <div className={`text-3xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r ${stat.gradient} mb-2`}>
                 {stat.value}
               </div>
-              <div className="text-sm text-gray-600 dark:text-gray-400 font-medium">
+              <div className="text-sm text-gray-600 dark:text-gray-600 font-medium">
                 {stat.label}
               </div>
             </motion.div>

@@ -10,6 +10,8 @@ import {
   CheckCircle,
   Send
 } from "lucide-react";
+import Image from "next/image";
+import { adoralogo } from "@/images";
 
 export default function ForgotPasswordPage() {
   const [email, setEmail] = useState("");
@@ -61,7 +63,14 @@ export default function ForgotPasswordPage() {
         >
           <div className="bg-white dark:bg-gray-800 rounded-3xl shadow-2xl border border-gray-200 dark:border-gray-700 p-8 md:p-12 text-center">
             <div className="w-20 h-20 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mx-auto mb-6">
-              <CheckCircle size={40} className="text-green-600 dark:text-green-400" />
+              <div className="items-center flex justify-center">
+                  <Image
+                     src={adoralogo}
+                     alt='Adora Logo'
+                     height={120}
+                     className="mb-4"
+                      />
+                   </div>
             </div>
 
             <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
@@ -72,12 +81,12 @@ export default function ForgotPasswordPage() {
               <span className="font-semibold text-gray-900 dark:text-white">{email}</span>
             </p>
 
-            <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-xl p-4 mb-6">
+            <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-green-800 rounded-xl p-4 mb-6">
               <p className="text-sm text-gray-700 dark:text-gray-300">
                 Didn&apos;t receive the email? Check your spam folder or{" "}
                 <button
                   onClick={() => setIsSuccess(false)}
-                  className="text-blue-600 dark:text-blue-400 font-semibold hover:underline"
+                  className="text-green-600 dark:text-green-400 font-semibold hover:underline"
                 >
                   try another email address
                 </button>
@@ -86,7 +95,7 @@ export default function ForgotPasswordPage() {
 
             <Link
               href="/auth/login"
-              className="inline-flex items-center justify-center gap-2 w-full bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-700 text-white py-4 rounded-xl font-bold hover:shadow-xl hover:scale-[1.02] transition-all"
+              className="inline-flex items-center justify-center gap-2 w-full bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-700 text-white py-4 rounded-xl font-bold hover:shadow-xl hover:scale-[1.02] transition-all"
             >
               <ArrowLeft size={20} />
               Back to Sign In
@@ -123,7 +132,14 @@ export default function ForgotPasswordPage() {
 
           <div className="text-center mb-8">
             <div className="w-16 h-16 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
-              <Mail size={32} className="text-blue-600 dark:text-blue-400" />
+            <div className="items-center flex justify-center">
+              <Image
+                  src={adoralogo}
+                  alt='Adora Logo'
+                  height={120}
+                  className="mb-4"
+                />
+              </div>
             </div>
             <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
               Forgot Password?
@@ -163,7 +179,7 @@ export default function ForgotPasswordPage() {
             <button
               onClick={handleSubmit}
               disabled={isLoading}
-              className="w-full bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-700 text-white py-4 rounded-xl font-bold text-lg hover:shadow-xl hover:scale-[1.02] transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 flex items-center justify-center gap-2"
+              className="w-full bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-700 text-white py-4 rounded-xl font-bold text-lg hover:shadow-xl hover:scale-[1.02] transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 flex items-center justify-center gap-2"
             >
               {isLoading ? (
                 <>

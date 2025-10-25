@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Star, Heart } from "lucide-react";
 import Image from "next/image";
+import { formatMonetaryValue } from "@/helper/global";
 
 interface ProductCardProps {
   product: {
@@ -43,7 +44,7 @@ export function ProductCard({ product }: ProductCardProps) {
           </button>
         </div>
         <div className="p-4">
-          <h3 className="font-semibold text-sm mb-2 line-clamp-2 group-hover:text-blue-600">
+          <h3 className="font-semibold text-sm mb-2 text-gray-600 line-clamp-2 group-hover:text-blue-600">
             {product.name}
           </h3>
           <p className="text-xs text-gray-500 mb-2">{product.vendor}</p>
@@ -54,11 +55,11 @@ export function ProductCard({ product }: ProductCardProps) {
           </div>
           <div className="flex items-center gap-2">
             <span className="text-lg font-bold text-gray-900">
-              ${product.price}
+              {formatMonetaryValue(product.price)}
             </span>
             {product.originalPrice && (
               <span className="text-sm text-gray-400 line-through">
-                ${product.originalPrice}
+                {formatMonetaryValue(product.originalPrice)}
               </span>
             )}
           </div>

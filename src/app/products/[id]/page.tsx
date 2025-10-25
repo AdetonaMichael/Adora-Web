@@ -19,6 +19,9 @@ import {
   Store,
   MessageCircle
 } from "lucide-react";
+import { formatMonetaryValue } from "@/helper/global";
+import { EcommerceNav } from "@/components/shared/EcommerceNav";
+import { Footer } from "@/components/layout/Footer";
 
 const product = {
   id: 1,
@@ -131,6 +134,8 @@ export default function ProductDetailsPage() {
   const discount = Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100);
 
   return (
+    <>
+    <EcommerceNav/>
     <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
       {/* Breadcrumb */}
       <div className="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800">
@@ -230,15 +235,15 @@ export default function ProductDetailsPage() {
             {/* Price */}
             <div className="flex items-center gap-4 mb-6">
               <span className="text-4xl font-bold text-gray-900 dark:text-white">
-                ${product.price}
+                {formatMonetaryValue(product.price)}
               </span>
               {product.originalPrice && (
                 <>
                   <span className="text-2xl text-gray-400 line-through">
-                    ${product.originalPrice}
+                    {formatMonetaryValue(product.originalPrice)}
                   </span>
                   <span className="bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 px-3 py-1 rounded-lg font-bold">
-                    Save ${(product.originalPrice - product.price).toFixed(2)}
+                    Save {formatMonetaryValue((product.originalPrice - product.price))}
                   </span>
                 </>
               )}
@@ -504,7 +509,7 @@ export default function ProductDetailsPage() {
                       <Star size={14} className="fill-yellow-400 text-yellow-400" />
                       <span className="text-sm font-medium dark:text-white">{item.rating}</span>
                     </div>
-                    <p className="text-lg font-bold dark:text-white">${item.price}</p>
+                    <p className="text-lg font-bold dark:text-white">{formatMonetaryValue(item.price)}</p>
                   </div>
                 </div>
               </Link>
@@ -513,5 +518,7 @@ export default function ProductDetailsPage() {
         </div>
       </div>
     </div>
+    <Footer/>
+    </>
   );
 }

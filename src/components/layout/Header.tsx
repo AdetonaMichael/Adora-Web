@@ -3,16 +3,20 @@
 import Link from "next/link";
 import { Search, ShoppingCart, User, Menu, Heart, Store } from "lucide-react";
 import { useState } from "react";
+import { adoralogo } from "@/images";
+import Image from "next/image";
+import { EcommerceNav } from "../shared/EcommerceNav";
+import { formatMonetaryValue } from "@/helper/global";
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 bg-white border-b border-gray-200 shadow-sm">
+    <header className="sticky top-0 z-50 border-b  border-gray-600 dark:bg-gray-900  shadow-sm">
       {/* Top Bar */}
-      <div className="bg-gray-900 text-white text-sm">
+      <div className="bg-gray-900 text-sm border-b border-gray-600">
         <div className="container mx-auto px-4 py-2 flex justify-between items-center">
-          <span>Free shipping on orders over $50</span>
+          <span>Free shipping on orders over {formatMonetaryValue(50000)}</span>
           <div className="hidden md:flex gap-4">
             <Link href="/vendor/register" className="hover:text-gray-300 flex items-center gap-1">
               <Store size={16} />
@@ -25,12 +29,20 @@ export function Header() {
       </div>
 
       {/* Main Header */}
-      <div className="container mx-auto px-4 py-4">
+      <div className="container mx-auto px-4 py-4 ">
         <div className="flex items-center justify-between gap-4">
-          {/* Logo */}
-          <Link href="/" className="text-2xl font-bold text-blue-600">
-            MarketHub
+          <div className="md:flex lg:flex md:items-center lg:items-center ">
+            <Image
+              src={adoralogo}
+              alt="Adora Logo"
+              height={40}
+              width={40}
+              />
+          <Link href="/" className="text-2xl font-bold text-blue-600 md:ml-4 lg:ml-4">
+            Adora MarketHub
           </Link>
+          </div>
+           
 
           {/* Search Bar */}
           <div className="hidden md:flex flex-1 max-w-2xl">
@@ -38,9 +50,9 @@ export function Header() {
               <input
                 type="text"
                 placeholder="Search for products, brands, or vendors..."
-                className="w-full px-4 py-2.5 pr-12 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full border-gray-600 px-4 py-2.5 pr-12 border  rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-transparent"
               />
-              <button className="absolute right-2 top-1/2 -translate-y-1/2 bg-blue-600 text-white p-2 rounded-md hover:bg-blue-700">
+              <button className="absolute right-2 top-1/2 -translate-y-1/2 bg-blue-600 text-white p-2 rounded-full hover:bg-blue-700">
                 <Search size={20} />
               </button>
             </div>
@@ -86,7 +98,7 @@ export function Header() {
       </div>
 
       {/* Navigation */}
-      <nav className="border-t border-gray-200 bg-white">
+      {/* <nav className="border-t border-gray-200 bg-white">
         <div className="container mx-auto px-4">
           <ul className="hidden md:flex items-center gap-8 py-3 text-sm">
             <li><Link href="/categories/electronics" className="hover:text-blue-600">Electronics</Link></li>
@@ -98,7 +110,8 @@ export function Header() {
             <li><Link href="/deals" className="text-red-600 font-medium">Today&apos;s Deals</Link></li>
           </ul>
         </div>
-      </nav>
+      </nav> */}
+      <EcommerceNav/>
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (

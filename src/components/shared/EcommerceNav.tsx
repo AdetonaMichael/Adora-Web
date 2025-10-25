@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { ChevronDown, Tag, Percent, Gift, TrendingUp, Flame } from "lucide-react";
-import { ThemeToggle } from "../ui/ThemeToggle";
+
 
 interface NavCategory {
   name: string;
@@ -105,7 +105,7 @@ export function EcommerceNav() {
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
 
   return (
-    <nav className="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 sticky top-[0px] z-40 shadow-sm">
+    <nav className=" dark:bg-gray-900 border-t dark:border-gray-800 sticky top-[0px] z-40 shadow-sm">
       <div className="container-fluid mx-auto px-4">
         <div className="flex items-center justify-between py-3">
           {/* Main Navigation */}
@@ -145,7 +145,7 @@ export function EcommerceNav() {
 
                 {/* Dropdown Menu */}
                 {category.subcategories && openDropdown === category.name && (
-                  <div className="absolute top-full left-0 mt-1 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-xl min-w-[220px] py-2 z-50">
+                  <div className="absolute top-full left-0 mt-1 bg-white dark:bg-gray-800 border  dark:border-gray-700 rounded-lg shadow-xl min-w-[220px] py-2 z-50">
                     {category.subcategories.map((sub) => (
                       <Link
                         key={sub.name}
@@ -176,12 +176,12 @@ export function EcommerceNav() {
               href="/offers"
               className="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-purple-50 dark:hover:bg-purple-900/20 transition-colors group"
             >
-              <Percent size={18} className="text-purple-600 dark:text-purple-400" />
-              <span className="text-sm font-medium text-purple-600 dark:text-purple-400">
+              <Percent size={18} className="text-blue-600 dark:text-blue-400" />
+              <span className="text-sm font-medium text-blue-600 dark:text-blue-400">
                 Special Offers
               </span>
             </Link>
-            <ThemeToggle/>
+        
           </div>
 
           {/* Mobile: Show all categories button */}

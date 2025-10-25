@@ -5,14 +5,14 @@ import { motion } from "framer-motion";
 import { Laptop, Shirt, Home, Sparkles, Dumbbell, Palette, Book, Gift } from "lucide-react";
 
 const categories = [
-  { name: "Electronics", icon: Laptop, href: "/categories/electronics", gradient: "from-blue-500 to-cyan-500" },
-  { name: "Fashion", icon: Shirt, href: "/categories/fashion", gradient: "from-pink-500 to-rose-500" },
-  { name: "Home & Living", icon: Home, href: "/categories/home", gradient: "from-green-500 to-emerald-500" },
-  { name: "Beauty", icon: Sparkles, href: "/categories/beauty", gradient: "from-purple-500 to-fuchsia-500" },
-  { name: "Sports", icon: Dumbbell, href: "/categories/sports", gradient: "from-orange-500 to-amber-500" },
+  { name: "Electronics", icon: Laptop, href: "/categories/electronics", gradient: "from-yellow-500 to-amber-500" },
+  { name: "Fashion", icon: Shirt, href: "/categories/fashion", gradient: "from-yellow-500 to-amber-500" },
+  { name: "Home & Living", icon: Home, href: "/categories/home", gradient: "from-yellow-500 to-amber-500" },
+  { name: "Beauty", icon: Sparkles, href: "/categories/beauty", gradient: "from-yellow-500 to-amber-500" },
+  { name: "Sports", icon: Dumbbell, href: "/categories/sports", gradient: "from-yellow-500 to-amber-500" },
   { name: "Art & Crafts", icon: Palette, href: "/categories/art", gradient: "from-yellow-500 to-orange-400" },
-  { name: "Books", icon: Book, href: "/categories/books", gradient: "from-indigo-500 to-blue-500" },
-  { name: "Gifts", icon: Gift, href: "/categories/gifts", gradient: "from-red-500 to-pink-500" },
+  { name: "Books", icon: Book, href: "/categories/books", gradient: "from-yellow-500 to-amber-500" },
+  { name: "Gifts", icon: Gift, href: "/categories/gifts", gradient: "from-yellow-500 to-amber-500" },
 ];
 
 export function CategoryGrid() {
@@ -86,7 +86,7 @@ export function CategoryGrid() {
         >
           <Link
             href="/categories"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-700 text-white font-semibold rounded-lg hover:shadow-xl hover:scale-105 transition-all duration-300"
+            className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-700 text-white font-semibold rounded-lg hover:shadow-xl hover:scale-105 transition-all duration-300"
           >
             View All Categories
             <motion.span

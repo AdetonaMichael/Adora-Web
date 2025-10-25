@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { Trash2, Plus, Minus, ShoppingBag, ArrowRight, Store, AlertCircle } from "lucide-react";
+import { formatMonetaryValue } from "@/helper/global";
 
 interface CartItem {
   id: number;
@@ -262,11 +263,11 @@ export default function CartPage() {
                             {/* Price */}
                             <div className="text-right">
                               <div className="font-bold text-lg">
-                                ${(item.price * item.quantity).toFixed(2)}
+                                { formatMonetaryValue(item.price * item.quantity)}
                               </div>
                               {item.quantity > 1 && (
                                 <div className="text-sm text-gray-500 dark:text-gray-400">
-                                  ${item.price.toFixed(2)} each
+                                  {formatMonetaryValue(item.price)} each
                                 </div>
                               )}
                             </div>
@@ -292,17 +293,17 @@ export default function CartPage() {
                     <div className="flex justify-between text-sm">
                       <span className="text-gray-600 dark:text-gray-400">Subtotal</span>
                       <span className="font-semibold">
-                        ${calculateVendorSubtotal(vendor.items).toFixed(2)}
+                        {formatMonetaryValue(calculateVendorSubtotal(vendor.items))}
                       </span>
                     </div>
                     <div className="flex justify-between text-sm">
                       <span className="text-gray-600 dark:text-gray-400">Shipping Fee</span>
-                      <span className="font-semibold">${vendor.shippingFee.toFixed(2)}</span>
+                      <span className="font-semibold">{formatMonetaryValue(vendor.shippingFee)}</span>
                     </div>
                     <div className="flex justify-between text-base pt-2 border-t border-gray-200 dark:border-gray-700">
                       <span className="font-semibold">Total</span>
                       <span className="font-bold text-lg">
-                        ${calculateVendorTotal(vendor).toFixed(2)}
+                        {formatMonetaryValue(calculateVendorTotal(vendor))}
                       </span>
                     </div>
                   </div>
@@ -334,7 +335,7 @@ export default function CartPage() {
                       {vendor.vendorName}
                     </span>
                     <span className="font-semibold">
-                      ${calculateVendorTotal(vendor).toFixed(2)}
+                      {formatMonetaryValue(calculateVendorTotal(vendor))}
                     </span>
                   </div>
                 ))}
@@ -344,7 +345,7 @@ export default function CartPage() {
                 <div className="flex justify-between text-lg font-bold">
                   <span>Grand Total</span>
                   <span className="text-blue-600 dark:text-blue-400">
-                    ${calculateGrandTotal().toFixed(2)}
+                    {formatMonetaryValue(calculateGrandTotal().toFixed(2))}
                   </span>
                 </div>
               </div>

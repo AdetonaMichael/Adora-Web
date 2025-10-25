@@ -93,7 +93,7 @@ export function FeaturedVendors() {
         <div className="text-center mt-10">
           <Link
             href="/vendors"
-            className="inline-block border-2 border-blue-600 dark:border-blue-500 text-blue-600 dark:text-blue-400 px-8 py-3 rounded-lg hover:bg-blue-600 hover:text-white transition font-semibold"
+            className="inline-block border border-gray-600 dark:border-gray-500 text-gray-600 dark:text-blue-400 px-8 py-3 rounded-lg hover:bg-gray-600 hover:text-white transition font-semibold"
           >
             View All Vendors 
           </Link>

@@ -119,7 +119,7 @@ export function PromoBanner() {
                 <motion.div
                   key={idx}
                   whileHover={{ scale: 1.05 }}
-                  className="bg-white/20 backdrop-blur-md px-6 py-4 rounded-2xl border-2 border-white/30 shadow-2xl min-w-[100px] text-center"
+                  className="bg-white/20 backdrop-blur-md px-6 py-4 rounded-2xl border  border-white/30 shadow-2xl min-w-[100px] text-center"
                 >
                   <motion.div
                     key={item.value}
@@ -180,7 +180,7 @@ export function PromoBanner() {
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Link
                 href="/trending"
-                className="border-2 border-white px-10 py-5 rounded-2xl font-bold hover:bg-white hover:text-blue-700 transition-all text-center flex items-center justify-center gap-2 text-lg text-white"
+                className="border border-gray-600 px-10 py-5 rounded-2xl font-bold hover:bg-white hover:text-blue-700 transition-all text-center flex items-center justify-center gap-2 text-lg text-white"
               >
                 View Trending Deals
               </Link>

@@ -7,7 +7,7 @@ import { ChevronRight, ShoppingBag, Star } from "lucide-react";
 
 export function HeroSection() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-700 text-white dark:from-gray-900 dark:via-gray-800 dark:to-black transition-colors">
+    <section className="relative overflow-hidden  text-white dark:from-gray-900 dark:via-gray-800 transition-colors">
       {/* Animated Gradient Overlay */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(255,255,255,0.15),_transparent_50%)] dark:bg-[radial-gradient(circle_at_top_left,_rgba(255,255,255,0.05),_transparent_60%)] pointer-events-none"></div>
 
@@ -21,7 +21,7 @@ export function HeroSection() {
           >
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 leading-tight">
               Your One-Stop Marketplace for <br className="hidden md:block" />
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-yellow-300 to-pink-400">
+              <span className="bg-clip-text  text-yellow-300">
                 Authentic Products
               </span>
             </h1>
@@ -40,7 +40,7 @@ export function HeroSection() {
 
               <Link
                 href="/vendor/register"
-                className="border-2 border-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-blue-700 transition text-center flex items-center justify-center gap-2"
+                className="border border-gray-600 px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-blue-700 transition text-center flex items-center justify-center gap-2"
               >
                 Become a Vendor
                 <ChevronRight size={20} />
@@ -72,7 +72,7 @@ export function HeroSection() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="hidden md:block"
           >
-            <div className="relative bg-white/10 dark:bg-white/5 backdrop-blur-md rounded-2xl p-8 border border-white/20 shadow-2xl">
+            <div className="relative bg-white/10 dark:bg-white/5 backdrop-blur-md rounded-2xl p-8 border border-gray-700 shadow-2xl">
               <Image
                 src="https://images.unsplash.com/photo-1472851294608-062f824d29cc?w=800&q=80"
                 alt="Marketplace Shopping"
@@ -96,7 +96,7 @@ export function HeroSection() {
 
       {/* Decorative gradient circles */}
       <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-500/20 rounded-full blur-3xl"></div>
-      <div className="absolute top-0 right-0 w-80 h-80 bg-pink-500/20 rounded-full blur-3xl"></div>
+      <div className="absolute top-0 right-0 w-80 h-80  rounded-full blur-3xl"></div>
     </section>
   );
 }

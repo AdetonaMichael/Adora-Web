@@ -13,6 +13,8 @@ import {
   Grid3x3,
   List,
 } from "lucide-react";
+import { EcommerceNav } from "@/components/shared/EcommerceNav";
+import { Footer } from "@/components/layout/Footer";
 
 interface Product {
   id: number;
@@ -146,9 +148,11 @@ export default function ProductsListingPage() {
   }, []);
 
   return (
+    <>
+    <EcommerceNav/>
     <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-700 dark:from-gray-900 dark:via-gray-800 dark:to-black text-white py-16 overflow-hidden">
+      <section className="relative bg-gradient-to-r from-gray-600 via-gray-600 to-gray-700 dark:from-gray-800 dark:via-gray-800 dark:to-gray text-white py-16 overflow-hidden">
         {/* Auto-scrolling Background Images */}
         <div className="absolute inset-0">
           {heroImages.map((image, index) => (
@@ -172,7 +176,7 @@ export default function ProductsListingPage() {
             </motion.div>
           ))}
           {/* Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-600/80 via-indigo-600/80 to-purple-700/80 dark:from-gray-900/90 dark:via-gray-800/90 dark:to-black/90"></div>
+          {/* <div className="absolute inset-0 bg-gradient-to-r from-gray-900/90 dark:via-gray-800/90 dark:to-black/90"></div> */}
         </div>
 
         {/* Decorative Overlay */}
@@ -214,7 +218,7 @@ export default function ProductsListingPage() {
                 placeholder="Search for products, brands, or categories..."
                 className="w-full px-6 py-4 pr-14 rounded-xl text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-800 border-2 border-transparent focus:border-blue-400 focus:outline-none shadow-lg"
               />
-              <button className="absolute right-2 top-1/2 -translate-y-1/2 bg-blue-600 text-white p-3 rounded-lg hover:bg-blue-700">
+              <button className="absolute right-2 top-1/2 -translate-y-1/2 bg-blue-600 text-white p-3 rounded-full hover:bg-blue-700">
                 <Search size={20} />
               </button>
             </div>
@@ -392,6 +396,8 @@ export default function ProductsListingPage() {
         </div>
       </div>
     </div>
+    <Footer/>
+    </>
   );
 }
 

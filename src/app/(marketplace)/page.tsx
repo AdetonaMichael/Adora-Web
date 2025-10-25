@@ -6,11 +6,13 @@ import { TrustBadges } from "@/components/home/TrustBadges";
 import { PromoBanner } from "@/components/home/PromoBanner";
 import { PartnershipSection } from "@/components/home/ParnerShipSection";
 import { EcommerceNav } from "@/components/shared/EcommerceNav";
+import { Header } from "@/components/layout/Header";
+import { Footer } from "@/components/layout/Footer";
 
 export default function HomePage() {
   return (
     <>
-      <EcommerceNav/>
+      <Header/>
       <HeroSection />
       <CategoryGrid />
       <ProductCarousel 
@@ -23,8 +25,9 @@ export default function HomePage() {
         title="New Arrivals" 
         subtitle="Fresh products from our vendors"
       />
-      <PartnershipSection />
       <TrustBadges />
+      <PartnershipSection />
+      <Footer/>
     </>
   );
 }
