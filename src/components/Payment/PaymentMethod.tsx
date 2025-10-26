@@ -471,7 +471,7 @@ const PaymentProviderExample: React.FC = () => {
           Select Payment Method
         </h2>
         <p className="text-gray-600 dark:text-gray-400 text-sm mb-6">
-          Choose how you"d like to pay ₦{amount.toLocaleString()}
+          Choose how you&apos;d like to pay ₦{amount.toLocaleString()}
         </p>
 
         <PaymentProviderSelector

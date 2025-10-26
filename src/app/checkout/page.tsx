@@ -11,11 +11,7 @@ import {
   Lock,
   ChevronRight,
   Check,
-  Package,
   Store,
-  Wallet,
-  Smartphone,
-  Building2,
   Edit,
   Plus,
   Info
