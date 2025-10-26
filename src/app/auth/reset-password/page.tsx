@@ -9,7 +9,6 @@ import {
   EyeOff,
   AlertCircle,
   CheckCircle,
-  ShieldCheck
 } from "lucide-react";
 import Image from "next/image";
 import { adoralogo } from "@/images";

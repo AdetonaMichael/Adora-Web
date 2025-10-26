@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useCallback } from 'react';
+import React, { useState, useMemo, useCallback } from "react";
 import {
   CreditCard,
   Shield,
@@ -13,7 +13,8 @@ import {
   AlertTriangle,
   Eye,
   EyeOff
-} from 'lucide-react';
+} from "lucide-react";
+import Image from "next/image";
 
 // Types
 interface FeeStructure {
@@ -52,17 +53,17 @@ interface PaymentProviderSelectorProps {
 }
 
 const providerLogos: Record<string, string> = {
-  paystack: 'https://cdn.brandfetch.io/idM5mrwtDs/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX&t=1667559828449',
-  flutterwave: 'https://cdn.brandfetch.io/iddYbQIdlK/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX&t=1667570802126',
-  stripe: 'https://images.ctfassets.net/fzn2n1nzq965/HTTOloNPhisV9P4hlMPNA/cacf1bb88b9fc492dfad34378d844280/Stripe_icon_-_square.svg',
-  paypal: 'https://www.paypalobjects.com/webstatic/mktg/Logo/pp-logo-100px.png',
-  bank_transfer: 'https://cdn-icons-png.flaticon.com/512/2830/2830284.png',
-  opay: 'https://opayweb.com/assets/images/logo.png',
-  moniepoint: 'https://monnify.com/assets/img/logo.svg',
-  ussd: 'https://cdn-icons-png.flaticon.com/512/1041/1041916.png',
-  crypto: 'https://cryptologos.cc/logos/bitcoin-btc-logo.png',
-  wise: 'https://wise.com/public-resources/assets/logos/wise/brand_logo.svg',
-  remita: 'https://www.remita.net/assets/img/logo.png'
+  paystack: "https://cdn.brandfetch.io/idM5mrwtDs/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX&t=1667559828449",
+  flutterwave: "https://cdn.brandfetch.io/iddYbQIdlK/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX&t=1667570802126",
+  stripe: "https://images.ctfassets.net/fzn2n1nzq965/HTTOloNPhisV9P4hlMPNA/cacf1bb88b9fc492dfad34378d844280/Stripe_icon_-_square.svg",
+  paypal: "https://www.paypalobjects.com/webstatic/mktg/Logo/pp-logo-100px.png",
+  bank_transfer: "https://cdn-icons-png.flaticon.com/512/2830/2830284.png",
+  opay: "https://opayweb.com/assets/images/logo.png",
+  moniepoint: "https://monnify.com/assets/img/logo.svg",
+  ussd: "https://cdn-icons-png.flaticon.com/512/1041/1041916.png",
+  crypto: "https://cryptologos.cc/logos/bitcoin-btc-logo.png",
+  wise: "https://wise.com/public-resources/assets/logos/wise/brand_logo.svg",
+  remita: "https://www.remita.net/assets/img/logo.png"
 };
 
 const providerIcons: Record<string, React.ComponentType<{ className?: string }>> = {
@@ -89,16 +90,16 @@ const PaymentProviderSelector: React.FC<PaymentProviderSelectorProps> = ({
   selectedProvider,
   onProviderSelect,
   amount,
-  currency = 'NGN',
+  // currency = "NGN",
   showFees = true,
-  className = '',
+  className = "",
   disabled = false,
   showDisabledProviders = true,
   onProviderToggle,
   isAdmin = false
 }) => {
   const calculateFee = useCallback((provider: PaymentProvider, amount?: number): string => {
-    if (!provider.fees || !amount) return 'Free';
+    if (!provider.fees || !amount) return "Free";
 
     let fee = 0;
     if (provider.fees.percentage) {
@@ -108,7 +109,7 @@ const PaymentProviderSelector: React.FC<PaymentProviderSelectorProps> = ({
       fee += provider.fees.fixed;
     }
 
-    return fee > 0 ? `₦${fee.toFixed(0)} fee` : 'Free';
+    return fee > 0 ? `₦${fee.toFixed(0)} fee` : "Free";
   }, []);
 
   const handleProviderClick = useCallback((provider: PaymentProvider) => {
@@ -139,7 +140,7 @@ const PaymentProviderSelector: React.FC<PaymentProviderSelectorProps> = ({
   const renderProvider = (provider: PaymentProvider) => {
     const IconComponent = getProviderIcon(provider.id);
     const isSelected = selectedProvider?.id === provider.id;
-    const feeText = showFees ? calculateFee(provider, amount) : '';
+    const feeText = showFees ? calculateFee(provider, amount) : "";
     const isDisabled = disabled || provider.disabled || provider.maintenanceMode;
     const logoUrl = providerLogos[provider.id] || provider.logo;
 
@@ -152,16 +153,16 @@ const PaymentProviderSelector: React.FC<PaymentProviderSelectorProps> = ({
         className={`
           relative border-2 rounded-xl transition-all duration-200 cursor-pointer p-4 w-72 flex-shrink-0
           ${isSelected && !isDisabled
-            ? 'border-blue-500 bg-blue-50 dark:bg-blue-950/30 ring-2 ring-blue-200 dark:ring-blue-800'
+            ? "border-blue-500 bg-blue-50 dark:bg-blue-950/30 ring-2 ring-blue-200 dark:ring-blue-800"
             : isDisabled
-            ? 'border-red-200 dark:border-red-800 bg-red-50 dark:bg-red-950/20'
-            : 'border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 hover:border-gray-300 dark:hover:border-gray-600'
+            ? "border-red-200 dark:border-red-800 bg-red-50 dark:bg-red-950/20"
+            : "border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 hover:border-gray-300 dark:hover:border-gray-600"
           }
-          ${isDisabled ? 'opacity-70 cursor-not-allowed' : 'hover:shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500'}
+          ${isDisabled ? "opacity-70 cursor-not-allowed" : "hover:shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"}
         `}
         onClick={() => handleProviderClick(provider)}
         onKeyDown={(e) => {
-          if (e.key === 'Enter' || e.key === ' ') {
+          if (e.key === "Enter" || e.key === " ") {
             e.preventDefault();
             handleProviderClick(provider);
           }
@@ -207,10 +208,10 @@ const PaymentProviderSelector: React.FC<PaymentProviderSelectorProps> = ({
               }}
               className={`p-1 rounded-md transition-colors ${
                 provider.disabled
-                  ? 'bg-red-100 hover:bg-red-200 text-red-600'
-                  : 'bg-green-100 hover:bg-green-200 text-green-600'
+                  ? "bg-red-100 hover:bg-red-200 text-red-600"
+                  : "bg-green-100 hover:bg-green-200 text-green-600"
               }`}
-              title={provider.disabled ? 'Enable Provider' : 'Disable Provider'}
+              title={provider.disabled ? "Enable Provider" : "Disable Provider"}
             >
               {provider.disabled ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
             </button>
@@ -221,25 +222,25 @@ const PaymentProviderSelector: React.FC<PaymentProviderSelectorProps> = ({
           <div className="flex items-center space-x-4">
             <div className="flex items-center justify-center w-12 h-12 rounded-lg bg-gray-50 dark:bg-gray-700 relative">
               {logoUrl && (
-                <img
+                <Image
                   src={logoUrl}
                   alt={provider.displayName}
                   className="w-8 h-8 object-contain"
                   onError={(e) => {
                     const target = e.target as HTMLImageElement;
-                    target.style.display = 'none';
+                    target.style.display = "none";
                     const parent = target.parentElement;
                     if (parent) {
-                      const fallbackIcon = parent.querySelector('.fallback-icon');
+                      const fallbackIcon = parent.querySelector(".fallback-icon");
                       if (fallbackIcon) {
-                        (fallbackIcon as HTMLElement).style.display = 'block';
+                        (fallbackIcon as HTMLElement).style.display = "block";
                       }
                     }
                   }}
                 />
               )}
               <IconComponent
-                className={`w-6 h-6 text-gray-600 dark:text-gray-400 fallback-icon ${logoUrl ? 'hidden' : 'block'}`}
+                className={`w-6 h-6 text-gray-600 dark:text-gray-400 fallback-icon ${logoUrl ? "hidden" : "block"}`}
               />
             </div>
 
@@ -269,7 +270,7 @@ const PaymentProviderSelector: React.FC<PaymentProviderSelectorProps> = ({
             )}
             {isDisabled && (
               <div className="text-xs text-red-500 dark:text-red-400 font-medium whitespace-nowrap">
-                {provider.maintenanceMode ? 'Under Maintenance' : 'Unavailable'}
+                {provider.maintenanceMode ? "Under Maintenance" : "Unavailable"}
               </div>
             )}
           </div>
@@ -286,7 +287,7 @@ const PaymentProviderSelector: React.FC<PaymentProviderSelectorProps> = ({
             Available Payment Methods
           </h3>
           <div className="overflow-x-auto pb-4 hide-scrollbar">
-            <div className="flex space-x-4" style={{ width: 'max-content' }}>
+            <div className="flex space-x-4" style={{ width: "max-content" }}>
               {enabledProviders.map(renderProvider)}
             </div>
           </div>
@@ -299,7 +300,7 @@ const PaymentProviderSelector: React.FC<PaymentProviderSelectorProps> = ({
             Currently Unavailable
           </h3>
           <div className="overflow-x-auto pb-4 hide-scrollbar">
-            <div className="flex space-x-4" style={{ width: 'max-content' }}>
+            <div className="flex space-x-4" style={{ width: "max-content" }}>
               {disabledProviders.map(renderProvider)}
             </div>
           </div>
@@ -348,51 +349,51 @@ const PaymentProviderExample: React.FC = () => {
 
   const [providers, setProviders] = useState<PaymentProvider[]>([
     {
-      id: 'paystack',
-      name: 'paystack',
-      displayName: 'Paystack',
-      description: 'Pay with cards, bank transfer or USSD',
+      id: "paystack",
+      name: "paystack",
+      displayName: "Paystack",
+      description: "Pay with cards, bank transfer or USSD",
       fees: { percentage: 1.5 },
-      processingTime: 'Instant',
+      processingTime: "Instant",
       popular: true,
       disabled: false
     },
     {
-      id: 'flutterwave',
-      name: 'flutterwave',
-      displayName: 'Flutterwave',
-      description: 'Cards, bank transfer & mobile money',
+      id: "flutterwave",
+      name: "flutterwave",
+      displayName: "Flutterwave",
+      description: "Cards, bank transfer & mobile money",
       fees: { percentage: 1.4 },
-      processingTime: 'Instant',
+      processingTime: "Instant",
       popular: true,
       disabled: false
     },
     {
-      id: 'stripe',
-      name: 'stripe',
-      displayName: 'Stripe',
-      description: 'Global card payments',
+      id: "stripe",
+      name: "stripe",
+      displayName: "Stripe",
+      description: "Global card payments",
       fees: { percentage: 2.9, fixed: 30 },
-      processingTime: 'Instant',
+      processingTime: "Instant",
       disabled: true,
-      disabledReason: 'Currently under maintenance'
+      disabledReason: "Currently under maintenance"
     },
     {
-      id: 'paypal',
-      name: 'paypal',
-      displayName: 'PayPal',
-      description: 'Pay with your PayPal account',
+      id: "paypal",
+      name: "paypal",
+      displayName: "PayPal",
+      description: "Pay with your PayPal account",
       fees: { percentage: 2.9, fixed: 30 },
-      processingTime: 'Instant',
+      processingTime: "Instant",
       maintenanceMode: true
     },
     {
-      id: 'bank_transfer',
-      name: 'bank_transfer',
-      displayName: 'Bank Transfer',
-      description: 'Direct bank transfer',
+      id: "bank_transfer",
+      name: "bank_transfer",
+      displayName: "Bank Transfer",
+      description: "Direct bank transfer",
       fees: { fixed: 0 },
-      processingTime: '1-2 hours',
+      processingTime: "1-2 hours",
       disabled: false
     }
   ]);
@@ -418,16 +419,16 @@ const PaymentProviderExample: React.FC = () => {
       await new Promise(resolve => setTimeout(resolve, 2000));
 
       // Note: In a real implementation, you would use a proper HTTP client
-      // const response = await fetch('/initiatePayStackPayment', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
+      // const response = await fetch("/initiatePayStackPayment", {
+      //   method: "POST",
+      //   headers: { "Content-Type": "application/json" },
       //   body: JSON.stringify({ amount })
       // });
 
       alert(`Payment initiated with ${selectedProvider.displayName}! Amount: ₦${amount}`);
     } catch (error) {
-      console.error('Payment failed:', error);
-      alert('Payment failed. Please try again.');
+      console.error("Payment failed:", error);
+      alert("Payment failed. Please try again.");
     } finally {
       setIsProcessing(false);
     }
@@ -446,21 +447,21 @@ const PaymentProviderExample: React.FC = () => {
             onClick={() => setIsAdmin(!isAdmin)}
             className={`px-4 py-2 rounded-lg font-medium transition-colors ${
               isAdmin
-                ? 'bg-blue-600 text-white'
-                : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300'
+                ? "bg-blue-600 text-white"
+                : "bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300"
             }`}
           >
-            {isAdmin ? 'Exit Admin Mode' : 'Admin Mode'}
+            {isAdmin ? "Exit Admin Mode" : "Admin Mode"}
           </button>
           <button
             onClick={() => setShowDisabledProviders(!showDisabledProviders)}
             className={`px-4 py-2 rounded-lg font-medium transition-colors ${
               showDisabledProviders
-                ? 'bg-green-600 text-white'
-                : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300'
+                ? "bg-green-600 text-white"
+                : "bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300"
             }`}
           >
-            {showDisabledProviders ? 'Hide Disabled' : 'Show Disabled'}
+            {showDisabledProviders ? "Hide Disabled" : "Show Disabled"}
           </button>
         </div>
       </div>
@@ -470,7 +471,7 @@ const PaymentProviderExample: React.FC = () => {
           Select Payment Method
         </h2>
         <p className="text-gray-600 dark:text-gray-400 text-sm mb-6">
-          Choose how you'd like to pay ₦{amount.toLocaleString()}
+          Choose how you"d like to pay ₦{amount.toLocaleString()}
         </p>
 
         <PaymentProviderSelector

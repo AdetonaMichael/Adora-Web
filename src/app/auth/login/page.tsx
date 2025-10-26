@@ -11,9 +11,7 @@ import {
   Lock,
   AlertCircle,
   Chrome,
-  Github,
   Facebook,
-  ShoppingBag
 } from "lucide-react";
 import { adoralogo } from "@/images";
 

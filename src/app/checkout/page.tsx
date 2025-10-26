@@ -48,9 +48,9 @@ type DeliveryMethod = "delivery" | "pickup";
 type PaymentMethod = "card" | "paypal" | "bank" | "wallet" | "cod";
 
 export default function CheckoutPage() {
-  const [currentStep, setCurrentStep] = useState(1);
+  const [currentStep,] = useState(1);
   const [deliveryMethod, setDeliveryMethod] = useState<DeliveryMethod>("delivery");
-  const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>("card");
+  const [paymentMethod,] = useState<PaymentMethod>("card");
   const [isProcessing, setIsProcessing] = useState(false);
   const [paymentError, setPaymentError] = useState<string | null>(null);
 
@@ -153,9 +153,9 @@ export default function CheckoutPage() {
         setPaymentError(data.message || 'Payment initialization failed');
         setIsProcessing(false);
       }
-    } catch (error: any) {
+    } catch (error) {
       console.error('Payment error:', error);
-      if (error.message.includes('419') || error.message.includes('CSRF')) {
+      if (error instanceof Error && (error.message.includes('419') || error.message.includes('CSRF'))) {
         setPaymentError('Security token expired. Please refresh the page and try again.');
       } else {
         setPaymentError('An error occurred during payment processing. Please try again.');
@@ -164,7 +164,8 @@ export default function CheckoutPage() {
     }
   };
 
-  const [shippingAddress, setShippingAddress] = useState<ShippingAddress>({
+  // TODO: Implement address editing
+  const [shippingAddress] = useState<ShippingAddress>({
     fullName: "John Doe",
     phone: "+1 (555) 123-4567",
     address: "123 Main Street, Apt 4B",
@@ -174,13 +175,7 @@ export default function CheckoutPage() {
     country: "United States"
   });
 
-  const [cardDetails, setCardDetails] = useState({
-    number: "",
-    name: "",
-    expiry: "",
-    cvv: ""
-  });
-
+  // Card details will be handled by payment provider
   const cartItems: CartItem[] = [
     {
       id: 1,
@@ -205,13 +200,7 @@ export default function CheckoutPage() {
   const tax = subtotal * 0.08;
   const total = subtotal + shippingCost + tax;
 
-  const paymentOptions = [
-    { id: "card" as PaymentMethod, icon: CreditCard, name: "Credit/Debit Card", description: "Visa, Mastercard, Amex" },
-    { id: "paypal" as PaymentMethod, icon: Wallet, name: "PayPal", description: "Fast & secure payment" },
-    { id: "bank" as PaymentMethod, icon: Building2, name: "Bank Transfer", description: "Direct bank payment" },
-    { id: "wallet" as PaymentMethod, icon: Smartphone, name: "Digital Wallet", description: "Apple Pay, Google Pay" },
-    { id: "cod" as PaymentMethod, icon: Package, name: "Cash on Delivery", description: "Pay when you receive" }
-  ];
+  // Payment options now handled by PaymentProviderSelector component
 
   const handlePlaceOrder = () => {
     setIsProcessing(true);

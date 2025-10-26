@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { Trash2, Plus, Minus, ShoppingBag, ArrowRight, Store, AlertCircle } from "lucide-react";
 import { formatMonetaryValue } from "@/helper/global";
+import Image from "next/image";
 
 interface CartItem {
   id: number;
@@ -183,7 +184,7 @@ export default function CartPage() {
                 <div className="bg-gray-50 dark:bg-gray-800 px-6 py-4 border-b border-gray-200 dark:border-gray-700">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
-                      <img
+                      <Image
                         src={vendor.vendorLogo}
                         alt={vendor.vendorName}
                         className="w-10 h-10 rounded-full object-cover border-2 border-gray-200 dark:border-gray-700"
@@ -217,7 +218,7 @@ export default function CartPage() {
                           href={`/products/${item.productId}`}
                           className="flex-shrink-0"
                         >
-                          <img
+                          <Image
                             src={item.image}
                             alt={item.name}
                             className="w-24 h-24 object-cover rounded-lg border border-gray-200 dark:border-gray-700"

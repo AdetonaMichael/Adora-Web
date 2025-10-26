@@ -11,10 +11,8 @@ import {
   Lock,
   User,
   Phone,
-  CheckCircle,
   AlertCircle,
   Chrome,
-  Github,
   Facebook
 } from "lucide-react";
 import { adoralogo } from "@/images";

@@ -7,7 +7,6 @@ import {
   Mail,
   ArrowLeft,
   AlertCircle,
-  CheckCircle,
   Send
 } from "lucide-react";
 import Image from "next/image";

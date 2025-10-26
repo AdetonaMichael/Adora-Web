@@ -13,7 +13,6 @@ import {
   Users,
   ChevronDown,
   Shield,
-  TrendingUp
 } from "lucide-react";
 
 interface Vendor {

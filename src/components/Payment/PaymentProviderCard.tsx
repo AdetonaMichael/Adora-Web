@@ -12,6 +12,7 @@ import {
   Bitcoin,
   Zap
 } from 'lucide-react';
+import Image from 'next/image';
 
 // Types
 interface FeeStructure {
@@ -98,7 +99,7 @@ export const PaymentProviderCard: React.FC<PaymentProviderCardProps> = ({
   isSelected,
   onSelect,
   amount,
-  currency = 'NGN',
+  // currency = 'NGN',
   showFees = true,
   disabled = false,
   isAdmin = false,
@@ -203,7 +204,7 @@ export const PaymentProviderCard: React.FC<PaymentProviderCardProps> = ({
           {/* Logo/Icon */}
           <div className="flex items-center justify-center w-12 h-12 rounded-lg bg-gray-50 dark:bg-gray-700 relative">
             {logoUrl && (
-              <img
+              <Image
                 src={logoUrl}
                 alt={provider.displayName}
                 className="w-8 h-8 object-contain"

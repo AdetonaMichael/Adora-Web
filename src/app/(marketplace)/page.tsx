@@ -5,7 +5,6 @@ import { ProductCarousel } from "@/components/home/ProductCarousel";
 import { TrustBadges } from "@/components/home/TrustBadges";
 import { PromoBanner } from "@/components/home/PromoBanner";
 import { PartnershipSection } from "@/components/home/ParnerShipSection";
-import { EcommerceNav } from "@/components/shared/EcommerceNav";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 
